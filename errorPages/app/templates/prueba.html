@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    {% if objeto1 %}
+    <h1>{{ objeto1.id }} - {{objeto1.titulo}}</h1>
+    <p>{{ objeto1.descripcion }}</p>
+    {% endif %} {% if arreglo %}
+    <ul>
+      {% for item in arreglo %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form>
+      <input type="text" placeholder="Ingrese texto" name="texto" />
+      <button type="submit">Enviar</button>
+    </form>
+    <!-- {% if lista %}
+    <ul>
+      {% for persona in lista %}
+      <li>{{ persona.nombres }} - {{ persona.edad }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} -->
+  </body>
+</html>
