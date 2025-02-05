@@ -20,17 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d(y7vf_9+m-&3)e5&m_pzi8^b!k0bn2_*e0^pbg&^l@krp%p60'
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1', 'localhost',
 ]
 
-HANDLER404 = 'app.views.error_404_view'
-HANDLER500 = 'app.views.error_500_view'
 
 # Application definition
 
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +83,7 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mi_base_de_datos',
+        'NAME': 'personas',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -133,5 +133,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SEARCH_ENGINE_ID = '7212981c7445449ff'
-GOOGLE_API_KEY = 'AIzaSyAK591hVHIOZn6D6_FUpMjk_pS7H-8gsS4'
+HANDLER404 = 'app.views.error_404_view'
+HANDLER500 = 'app.views.error_500_view'
+
+AUTH_USER_MODEL= 'users.CustomUser'
+
+LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/home' # Dónde irán los usuarios tras iniciar sesión
+LOGOUT_REDIRECT_URL = '/users/login/'

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #2c5364, #0f2027, #203a43);
+        height: 100vh;
+        color: white;
+      }
+
+      .login-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: white;
+      }
+
+      .form-control {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: white;
+      }
+
+      .form-control:focus {
+        background: transparent;
+        color: white;
+        border-color: white;
+        box-shadow: none;
+      }
+
+      .form-label {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .btn-login {
+        background: linear-gradient(90deg, #6b8e23, #556b2f);
+        border: none;
+        color: white;
+        transition: background 0.3s;
+      }
+
+      .btn-login:hover {
+        background: linear-gradient(90deg, #556b2f, #6b8e23);
+      }
+
+      .text-small {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .custom-checkbox {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="container d-flex justify-content-center align-items-center vh-100"
+    >
+      <div class="col-md-4">
+        <div class="login-card">
+          <div class="text-center mb-4">
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"
+              alt="User Icon"
+              class="user-icon w-25"
+            />
+          </div>
+          <form method="post">
+            {% csrf_token %}
+
+            <!-- Campo de Usuario -->
+            <div class="mb-3">
+              <label class="form-label">{{ form.username.label }}</label>
+              <input
+                type="text"
+                name="{{ form.username.name }}"
+                class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                value="{{ form.username.value|default:'' }}"
+                placeholder="Email ID"
+              />
+              {% if form.username.errors %}
+              <div class="text-danger">
+                <small>{{ form.username.errors.0 }}</small>
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- Campo de Contraseña -->
+            <div class="mb-3">
+              <label class="form-label">{{ form.password.label }}</label>
+              <input
+                type="password"
+                name="{{ form.password.name }}"
+                class="form-control {% if form.password.errors %}is-invalid{% endif %}"
+                placeholder="Password"
+              />
+              {% if form.password.errors %}
+              <div class="text-danger">
+                <small>{{ form.password.errors.0 }}</small>
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- Recordar contraseña y link -->
+            <div
+              class="d-flex justify-content-between align-items-center custom-checkbox"
+            >
+              <div>
+                <input type="checkbox" id="remember" class="form-check-input" />
+                <label for="remember" class="form-check-label text-small"
+                  >Remember me</label
+                >
+              </div>
+              <a href="#" class="text-small">Forgot Password?</a>
+            </div>
+
+            <!-- Botón de Login -->
+            <button type="submit" class="btn btn-login w-100">LOGIN</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
