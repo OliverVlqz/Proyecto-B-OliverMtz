@@ -54,11 +54,11 @@ class CustomUserCreationForm(UserCreationForm):
                     'class': 'form-control',
                     'placeholder': 'Control number',
                     'required': True,
-                    'pattern': '^\d{5}[a-zA-Z]{2}\d{3}$',
+                    'pattern': '^[0-9]{5}[a-zA-Z]{2}[0-9]{3}$',
                     'title': 'La matrícula debe ser de la UTEZ'
                 }
             ),
-            'age': forms.NumberInput(attrs={'class': 'form-control',
+            'age': forms.NumberInput(attrs={'class': 'form-control', 
             }),
             'tel': forms.TextInput(
                 attrs={

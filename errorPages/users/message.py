@@ -1,4 +1,4 @@
-class Message:
+class message:
     def __init__(self, type: str, message: str, code: int, img: str = None):
         self.type = type
         self.message = message
@@ -10,8 +10,8 @@ class Message:
 
     def to_dict(self):
         return {
-            "tipo": self.type,
-            "mensaje": self.message,
-            "codigo": self.code,
-            "imagen": self.img
+            "type": self.type,
+            "message": self.message,
+            "code": self.code,
+            "img": self.img
         }
