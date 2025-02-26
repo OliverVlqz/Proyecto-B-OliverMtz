@@ -3,6 +3,8 @@ from .views import *
 
 urlpatterns=[
     path('api/get', lista_categorias, name='lista'),
-    path('ver/', ver_categoria, name='ver'),
-    path('registrar/', agregar_categoria, name='agregar')
+    path('json/', ver_categoria, name='ver'),
+    path('registrar/', agregar_categoria, name='agregar'),
+    path('api/post', registrar_categoria, name='registrar')
+    
 ]
