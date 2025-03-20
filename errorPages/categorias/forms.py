@@ -1,34 +1,41 @@
+#Generar aqui todos los formularios HTML que vamos a ocupar
 
-from django import forms
+from django import forms 
 from .models import Categoria
 
-class CategoriaForm(forms.ModelForm):
+#Crear una clase para cada formulario que necesitemos
+class categoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
-        fields = ['nombre', 'imagen']
-        labels = {
-            'nombre': 'Nombre de la categoría',
-            'imagen': 'URL de la imagen'
-        }
+        
+        #Campos que se verán en el formulario
+        fields= ['nombre', 'imagen']
+        
+        #Personalizar mis inputs
         widgets = {
             'nombre': forms.TextInput(
                 attrs={
                     'class': 'form-input',
-                    'placeholder': 'Nombre de la categoría'
+                    'placeholder': 'Ingrese aquí el nombre de su categoría',
                 }
             ),
-            'imagen': forms.URLInput(
-                attrs={
+            'imagen': forms.TextInput(
+                attrs= {
                     'class': 'form-input',
-                    'placeholder': 'URL de la imagen'
+                    'placeholder': 'Ingrese su url'
                 }
             )
         }
-        error_messages = {
-            'nombre': {
-                'required': 'Este campo es obligatorio'
-            },
-            'imagen': {
-                'required': 'Este campo es obligatorio'
+        
+        #Etiquetas
+        labels ={
+            'nombre' : 'Nombre de la categoría',
+            'imagen' : 'URL de la imagen'
+        }
+        
+        #Personalizar los mensajes de error
+        error_messages ={
+            'nombre' : {'required': 'El nombre no puede estar vacío',
+            'invalid': 'Ingresa un nombre válido'           
             }
         }

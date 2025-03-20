@@ -1,20 +1,24 @@
 from django.db import models
 
-# Create your models here.
-# modelo Django de alumnos:
-
-# Nombre
-# Apellido
-# Edad
-# Matricula (único)
-# Correo (único)
-
+# Clase de Producto
 class Alumno(models.Model):
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
+    #atributos de clase
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
     edad = models.IntegerField()
-    matricula = models.CharField(max_length=10, unique=True)
-    correo = models.EmailField(unique=True)
+    matricula = models.CharField(max_length=50, unique=True)
+    correo = models.CharField(max_length=50,unique=True)
     
     def __str__(self):
-        return self.nombre + ' ' + self.apellido
+        return self.nombre
+    
+    #Necesito una función que devuelva el objeto en forma de diccionario (Dict)
+    def to_ditc(self):
+        return{
+            # 'claveValor' : 'valor'
+            'nombre': self.nombre,
+            'apellido': self.apellido,
+            'edad': self.edad,
+            'matricula': self.matricula,
+            'correo': self.correo
+        }

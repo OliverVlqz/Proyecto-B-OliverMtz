@@ -1,10 +1,9 @@
 from django.urls import path
-from .views import *
+from . views import *
 
-urlpatterns=[
+urlpatterns= [
     path('api/get', lista_categorias, name='lista'),
-    path('json/', ver_categoria, name='ver'),
-    path('registrar/', agregar_categoria, name='agregar'),
-    path('api/post', registrar_categoria, name='registrar')
-    
+    path('json/', ver_categorias, name='verCategoria'),
+    path('registrar/', agregar_categoria, name= 'agregar'),
+    path('api/post/', registrar_categoria, name= 'post'),
 ]

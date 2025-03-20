@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate
+
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -42,36 +42,50 @@ class CustomUserCreationForm(UserCreationForm):
                     'title': 'Correo de la UTEZ'
                 }
             ),
-            'name': forms.TextInput(attrs={'class': 'form-control',
-            'placeholder': 'Name'
+            'name': forms.TextInput(
+                attrs={
+            'class': 'form-control',
+            'placeholder': 'Name',
+            'required': True
             }
             ),
-            'surname': forms.TextInput(attrs={'class': 'form-control',
-            'placeholder': 'Surname'
+            'surname': forms.TextInput(
+                attrs={
+            'class': 'form-control',
+            'placeholder': 'Surname',
+            'required': True
             }),
             'control_number': forms.TextInput(
                 attrs={
                     'class': 'form-control',
                     'placeholder': 'Control number',
                     'required': True,
-                    'pattern': '^[0-9]{5}[a-zA-Z]{2}[0-9]{3}$',
-                    'title': 'La matrícula debe ser de la UTEZ'
+                    'pattern': '^\d{5}[a-zA-Z]{2}\d{3}$',
+                    'title': 'La matrícula debe ser de la UTEZ',
+                    'maxlength': 20
                 }
             ),
-            'age': forms.NumberInput(attrs={'class': 'form-control', 
+            'age': forms.NumberInput(
+                attrs={
+                'class': 'form-control',
+                'required': True,
+                'pattern': '^[0-9]+$',
+                'max': '100',
+                'min': '1'
             }),
             'tel': forms.TextInput(
                 attrs={
                     'class': 'form-control',
                     'placeholder': 'Phone number',
                     'required': True,
-                    'pattern': '^[0-9]{10}$',
-                    'title': 'El número telefónico debe ser de 10 dígitos.'
+                    'pattern': '^[0-9\+-]{10,}$',
+                    'title': 'El número telefónico debe ser de 10 dígitos.',
+                    'maxlength': '15'
                 }
             ),
         }
     
-    
+        
     def clean_name(self):
         name = self.cleaned_data.get('name')
         if len(name) < 3:

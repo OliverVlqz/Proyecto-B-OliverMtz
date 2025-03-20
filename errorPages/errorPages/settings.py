@@ -20,15 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d(y7vf_9+m-&3)e5&m_pzi8^b!k0bn2_*e0^pbg&^l@krp%p60'
-
+SECRET_KEY = 'django-insecure-t7bo@zb(@a808$gro#qg0%8ah#l(3m+4*%@hj1dc93gfyh*ck7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1', 'localhost',
-    '*'
 ]
 
 
@@ -43,13 +41,25 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'users',
-    'productos',
+    'productos', 
     'categorias',
-    'alumnos',
     'rest_framework',
+    'alumnos',
+    'rest_framework_simplejwt',
+    'corsheaders',
 ]
 
+#Configuración de AUTH
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'errorPages.urls'
 

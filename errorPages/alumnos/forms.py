@@ -1,53 +1,54 @@
 from django import forms
 from .models import Alumno
 
-class AlumnoForm(forms.ModelForm):
+class alumnoForm(forms.ModelForm): 
+
     class Meta:
         model = Alumno
-        fields = ['id','nombre','apellido', 'edad', 'correo', 'matricula']
-        labels = {
-            'id': 'ID del alumno',
-            'nombre': 'Nombre del alumno',
-            'apellido': 'Apellido del alumno',
-            'edad': 'Edad del alumno',
-            'correo': 'Correo del alumno',
-            'matricula': 'Matricula del alumno'
-        }
+
+        fields = ['nombre', 'apellido', 'edad', 'matricula', 'correo']
+
         widgets = {
-            'id': forms.TextInput(
-                attrs={ 
-                    'class': 'form-input',
-                    'placeholder': 'ID del alumno'
+            'nombre' : forms.TextInput(
+                attrs={
+                    'class' : 'form-control',
+                    'placeholder' : 'Nombre del alumno'
                 }
             ),
-            'nombre': forms.TextInput(
+            'apellido' : forms.TextInput(
                 attrs={
-                    'class': 'form-input',
-                    'placeholder': 'Nombre del alumno'
+                    'class' : 'form-control',
+                    'placeholder' : 'apellidos',
                 }
             ),
-            'apellido': forms.TextInput(
+            'edad' : forms.NumberInput(
                 attrs={
-                    'class': 'form-input',
-                    'placeholder': 'Apellido del alumno'
+                    'class' : 'form-control',
+                    'placeholder' : 'Edad del alumno'
                 }
             ),
-            'edad': forms.NumberInput(
+            'matricula' : forms.TextInput(
                 attrs={
-                    'class': 'form-input',
-                    'placeholder': 'Edad del alumno'
+                    'class' : 'form-control',
+                    'placeholder' : 'Matricula Alumno',
                 }
             ),
-            'correo': forms.EmailInput(
+            'correo' : forms.TextInput(
                 attrs={
-                    'class': 'form-input',
-                    'placeholder': 'Correo del alumno'
+                    'class' : 'form-control',
+                    'placeholder' : 'Correo',
                 }
             ),
-            'matricula': forms.TextInput(
-                attrs={
-                    'class': 'form-input',
-                    'placeholder': 'Matricula del alumno'
-                }
-            )
+            
+        }
+
+        #Etiquetas personalizadas 
+        labels = {
+            'nombre' : 'Nombre del Alumno',
+        }
+
+        #Mensajes de error personalizados
+        error_messages = {
+            'nombre' : {'required' : 'El nombre es obligatorio'},
+            'matricula' : {'required' : 'La matrícula debe ser única', 'invalid' : 'Ingrese un correo diferente'}
         }
