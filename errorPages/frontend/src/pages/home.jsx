@@ -5,12 +5,15 @@ export default function Home() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const sesion = localStorage.getItem("accessToken");
+
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/users/api/')
         .then((res) => {
             setData(res.data);
             setLoading(false);
+            console.log(data)
         })
         .catch((err) => {
             setError(err);
@@ -27,13 +30,12 @@ export default function Home() {
   return (
     <div>
         <h1>Datos de la API desde Django</h1>
+        <h2>{sesion}</h2>
         <ul>
             {data.map((item)=>(
-                <li key={item.id}>{JSON.stringify.item}</li>
-
+                <li key={item.id}>{item.name} {item.surname}</li>
             ))}
-        </ul>
-        
+        </ul>    
     </div>
   )
 }

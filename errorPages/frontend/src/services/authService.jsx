@@ -18,3 +18,4 @@ export const logout=()=>{
 
 // To do
 // Crear un metodo que jale informacion del usuario para fines de react
+
